@@ -4,20 +4,11 @@ import yaml
 import matplotlib.pyplot as plt
 from sklearn.metrics import precision_recall_fscore_support, f1_score
 
-def create_parser():
-    parser = argparse.ArgumentParser(formatter_class=argparse.RawTextHelpFormatter)
-    parser.add_argument('--config_file',default='config.yaml', type=argparse.FileType(mode='r'))
-    return parser
-
-def parse_args(parser):
-    args = parser.parse_args()
-    if args.config_file:
-        data = yaml.load(args.config_file)
-        delattr(args, 'config_file')
-        # print(data)
-        arg_dict = args.__dict__
-        for key, value in data.items():
-            arg_dict[key] = value
+def get_config():
+    with open("/config.yaml", "r") as config:
+        args = AttributeDict(yaml.safe_load(config))
+    args.lr = float(args.lr)
+    args.weight_decay = float(args.weight_decay)
     return args
 
 def accuracy(pred_y, y):
@@ -60,3 +51,8 @@ def plot_results(df):
 
     plt.grid(True)
     plt.show()
+
+class AttributeDict(dict):
+    __getattr__ = dict.get
+    __setattr__ = dict.__setitem__
+    __delattr__ = dict.__delitem__
