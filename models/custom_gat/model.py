@@ -1,5 +1,5 @@
 from torch.nn import Module, Sequential, ELU
-from layer import GATLayer
+from models.custom_gat.layer import GATLayer
 
 class GAT(Module):
 
