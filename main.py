@@ -1,3 +1,4 @@
+import warnings
 import torch
 import pandas as pd
 import utils as u
@@ -6,7 +7,6 @@ from train import train, test
 from models import models
 from models.custom_gat.model import GAT
 
-import warnings 
 warnings.simplefilter(action='ignore', category=FutureWarning)
 
 parser = u.create_parser()
@@ -16,9 +16,9 @@ features, edges = load_data(args.data_path)
 data = data_to_pyg(features, edges)
 
 args.use_cuda = (torch.cuda.is_available() and args.use_cuda)
-args.args.device='cpu'
+args.args.device = 'cpu'
 if args.use_cuda:
-    args.args.device='cuda'
+    args.args.device = 'cuda'
 print ("use CUDA:", args.use_cuda, "- args.device:", args.args.device)
 
 models_to_train = {
@@ -27,8 +27,8 @@ models_to_train = {
     'SAGE': models.SAGEConvolution().to(args.device),
     'Cheb': models.ChebyshevConvolution(kernel=[1,2]).to(args.device),
     'GATv2': models.GATv2Convolution().to(args.device),
-    'Custom GAT': GAT(num_of_layers=3, num_heads_per_layer=[1, 4, 1], 
-                      num_features_per_layer=[data.num_features, args['hidden_units'], 
+    'Custom GAT': GAT(num_of_layers=3, num_heads_per_layer=[1, 4, 1],
+                      num_features_per_layer=[data.num_features, args['hidden_units'],
                       args['hidden_units']//2, args['num_classes']], device=args.device).to(args.device)
 }
 

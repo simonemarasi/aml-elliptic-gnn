@@ -23,7 +23,7 @@ def train(args, model, data):
         val_acc = accuracy(out[data.val_mask].argmax(dim=1), data.y[data.val_mask])
 
         # Print metrics every 10 epochs
-        if(epoch % 100 == 0):
+        if epoch % 100 == 0:
             print(f'Epoch {epoch:>3} | Train Loss: {loss:.3f} | Train Acc: '
                   f'{acc*100:>6.2f}% | Val Loss: {val_loss:.3f} | '
                   f'Val Acc: {val_acc*100:.2f}%')
