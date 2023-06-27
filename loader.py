@@ -61,6 +61,6 @@ def data_to_pyg(df_class_feature, df_edges):
     y = torch.tensor(df_class_feature["class"].values, dtype=torch.long)
 
     data = Data(x=x, edge_index=edge_index, y=y)
-    RandomNodeSplit(num_val=0.15, num_test=0.2)(data)
+    data = RandomNodeSplit(num_val=0.15, num_test=0.2)(data)
 
     return data
