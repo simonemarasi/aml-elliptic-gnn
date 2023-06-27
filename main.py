@@ -37,6 +37,7 @@ compare_illicit = pd.DataFrame(columns=['model','Precision','Recall', 'F1', 'F1 
 
 for name, model in models_to_train.items():
 
+    data = data.to(args.device)
     print('-'*50)
     print(f"Training model: {name}")
     print('-'*50)
