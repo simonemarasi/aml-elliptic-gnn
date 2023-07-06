@@ -1,9 +1,16 @@
 ## Anti-money Laundering on Elliptic Dataset with GNN
 
 The goal of this work is to tackle anti-money laundering problem trying to classifying efficiently illicit transactions and create a comparison between different architectures, in particular comparing different types of Graph Neural Networks (GNNs), to identify what are the key features and approaches that enable good performances in this given context.
+
 ### Setup
 
-clone repo
+First of all you have to clone the repository with the standard command:
+
+`git clone https://github.com/simonemarasi/aml-elliptic-gnn`
+
+It is available also a ready-to-run Google Colab version of the project at the following link:
+
+TODO
 
 #### Download the data
 
@@ -12,12 +19,11 @@ You can download the dataset zipped from the following [link](https://files.catb
 In the configuration file it is possible also to modify some hyperparameters such as the number of epochs, the number of hidden units to use, the learning rate, etc.
 
 ### Run
-It is possible to install all the packages required for the execution launching the command
 
-    pip install -r requirements.txt
+It is possible to install all the packages required for the execution launching the command
+`pip install -r requirements.txt`
 After that, to run the script execute the command
-   
-    python main.py
+`python main.py`
 
 ### Results
 
