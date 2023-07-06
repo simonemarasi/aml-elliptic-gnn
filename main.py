@@ -8,17 +8,22 @@ from models import models
 from models.custom_gat.model import GAT
 
 warnings.simplefilter(action='ignore', category=FutureWarning)
+warnings.simplefilter(action='ignore', category=UserWarning)
 
+print("Loading configuration from file...")
 args = u.get_config()
-
+print("Configuration loaded successfully")
+print("="*50)
+print("Loading graph data...")
 features, edges = load_data(args.data_path)
 data = data_to_pyg(features, edges)
-
+print("Graph data loaded successfully")
+print("="*50)
 args.use_cuda = (torch.cuda.is_available() and args.use_cuda)
 args.device = 'cpu'
 if args.use_cuda:
     args.device = 'cuda'
-print ("use CUDA:", args.use_cuda, "- args.device:", args.device)
+print ("Using CUDA: ", args.use_cuda, "- args.device: ", args.device)
 
 args.num_features = data.num_features
 
@@ -34,7 +39,8 @@ models_to_train = {
 }
 
 compare_illicit = pd.DataFrame(columns=['model','Precision','Recall', 'F1', 'F1 Micro AVG'])
-
+print("Starting training models")
+print("="*50)
 for name, model in models_to_train.items():
 
     data = data.to(args.device)

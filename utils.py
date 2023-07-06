@@ -2,10 +2,11 @@ import numpy as np
 import argparse
 import yaml
 import matplotlib.pyplot as plt
+import os
 from sklearn.metrics import precision_recall_fscore_support, f1_score
 
 def get_config():
-    with open("/config.yaml", "r") as config:
+    with open(os.path.join(os.getcwd(), "config.yaml"), "r") as config:
         args = AttributeDict(yaml.safe_load(config))
     args.lr = float(args.lr)
     args.weight_decay = float(args.weight_decay)
