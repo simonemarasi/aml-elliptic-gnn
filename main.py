@@ -14,7 +14,7 @@ warnings.simplefilter(action='ignore', category=UserWarning)
 parser = ArgumentParser()
 parser.add_argument("-d", "--data", dest="data_path", help="Path of data folder")
 command_line_args = parser.parse_args()
-data_path = command_line_args.data
+data_path = command_line_args.data_path
 
 print("Loading configuration from file...")
 args = u.get_config()
