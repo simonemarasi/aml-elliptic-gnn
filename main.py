@@ -5,17 +5,24 @@ import utils as u
 from loader import load_data, data_to_pyg
 from train import train, test
 from models import models
+from argparse import ArgumentParser
 from models.custom_gat.model import GAT
 
 warnings.simplefilter(action='ignore', category=FutureWarning)
 warnings.simplefilter(action='ignore', category=UserWarning)
+
+parser = ArgumentParser()
+parser.add_argument("-d", "--data", dest="data_path", help="Path of data folder")
+command_line_args = parser.parse_args()
+data_path = command_line_args.data
 
 print("Loading configuration from file...")
 args = u.get_config()
 print("Configuration loaded successfully")
 print("="*50)
 print("Loading graph data...")
-features, edges = load_data(args.data_path)
+data_path = args.data_path if data_path is None else data_path
+features, edges = load_data(data_path)
 data = data_to_pyg(features, edges)
 print("Graph data loaded successfully")
 print("="*50)
