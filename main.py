@@ -65,8 +65,8 @@ for name, model in models_to_train.items():
     print('-'*50)
     compare_illicit = compare_illicit.append(u.compute_metrics(model, name, data, compare_illicit), ignore_index=True)
 
-compare_illicit.to_csv(os.path.join(data_path, 'output.csv'), index=False)
-print('Results saved to result.csv')
+compare_illicit.to_csv(os.path.join(data_path, 'metrics.csv'), index=False)
+print('Results saved to metrics.csv')
 
 u.plot_results(compare_illicit)
 
