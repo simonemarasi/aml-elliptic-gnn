@@ -8,9 +8,7 @@ First of all you have to clone the repository with the standard command:
 
 `git clone https://github.com/simonemarasi/aml-elliptic-gnn`
 
-It is available also a ready-to-run Google Colab version of the project at the following link:
-
-TODO
+If you want only run the code note that it is also available a ready-to-run Google Colab version of the project at the following [link](https://colab.research.google.com/drive/145zhW2mehWVOJi3-wlEF4Y0evJOy_uDb?usp=sharing). The full code is inspectable cloning this repository.
 
 #### Download the data
 
