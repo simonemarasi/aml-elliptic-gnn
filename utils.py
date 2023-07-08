@@ -53,7 +53,6 @@ def plot_results(df):
 
     plt.grid(True)
     plt.show()
-    plt.savefig(os.path.join(path, 'metrics.png'))
 
 class AttributeDict(dict):
     __getattr__ = dict.get
