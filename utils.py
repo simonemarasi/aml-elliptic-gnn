@@ -28,7 +28,7 @@ def compute_metrics(model, name, data, df):
 
   return m
 
-def plot_results(path, df):
+def plot_results(df):
 
     labels = df['model'].to_numpy()
     precision = df['Precision'].to_numpy()
