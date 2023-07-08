@@ -64,5 +64,12 @@ for name, model in models_to_train.items():
     print('-'*50)
     compare_illicit = compare_illicit.append(u.compute_metrics(model, name, data, compare_illicit), ignore_index=True)
 
-u.plot_results(compare_illicit)
+print('='*50)
+print('='*20 + " RESULTS "+ '='*21)
+print('='*50)
+print()
+
+print(compare_illicit)
+
+u.plot_results(data_path, compare_illicit)
 
