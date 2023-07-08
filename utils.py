@@ -1,5 +1,4 @@
 import numpy as np
-import argparse
 import yaml
 import matplotlib.pyplot as plt
 import os
@@ -29,7 +28,7 @@ def compute_metrics(model, name, data, df):
 
   return m
 
-def plot_results(df):
+def plot_results(path, df):
 
     labels = df['model'].to_numpy()
     precision = df['Precision'].to_numpy()
@@ -54,6 +53,7 @@ def plot_results(df):
 
     plt.grid(True)
     plt.show()
+    plt.savefig(os.path.join(path, 'metrics.png'))
 
 class AttributeDict(dict):
     __getattr__ = dict.get
