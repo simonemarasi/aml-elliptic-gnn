@@ -2,6 +2,7 @@ import warnings
 import torch
 import pandas as pd
 import utils as u
+import os
 from loader import load_data, data_to_pyg
 from train import train, test
 from models import models
@@ -63,6 +64,9 @@ for name, model in models_to_train.items():
     print(f"Computing metrics for model: {name}")
     print('-'*50)
     compare_illicit = compare_illicit.append(u.compute_metrics(model, name, data, compare_illicit), ignore_index=True)
+
+compare_illicit.to_csv(os.path.join(data_path, 'output.csv'), index=False)
+print('Results saved to result.csv')
 
 u.plot_results(compare_illicit)
 
