@@ -33,3 +33,5 @@ After that, to run the script execute the command
 | Cheb       | **0.942**          | 0.795           | **0.862**      | **0.976**             |
 | GATv2      | 0.891              | **0.804**       | 0.845          | 0.972                 |
 | Custom GAT | 0.861              | 0.762           | 0.808          | 0.966                 | 
+
+You can find also the complete report of the project in this repository.
