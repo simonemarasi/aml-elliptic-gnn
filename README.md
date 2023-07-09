@@ -12,7 +12,7 @@ If you want only run the code note that it is also available a ready-to-run Goog
 
 #### Download the data
 
-You can download the dataset zipped from the following [link](https://archive.org/download/elliptic-dataset/d4w7q6.zip). After done that make sure to extract the zip file into the `data` folder located at the root of the repository. However you can put the data also in other places, making sure to change the folder in the configuration file (`config.yaml`) accordingly.
+You can download the dataset zipped from the following [link](https://www.4sync.com/web/directDownload/fQErng3L/5YfHxh7W.cc4f36f14c07d75ced4bf1fcfa1a0772). After done that make sure to extract the zip file into the `data` folder located at the root of the repository. However you can put the data also in other places, making sure to change the folder in the configuration file (`config.yaml`) accordingly.
 
 In the configuration file it is possible also to modify some hyperparameters such as the number of epochs, the number of hidden units to use, the learning rate, etc.
 
