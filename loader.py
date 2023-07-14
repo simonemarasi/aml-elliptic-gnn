@@ -14,7 +14,7 @@ def load_data(data_path, noAgg=False):
     # Name colums basing on index
     colNames1 = {'0': 'txId', 1: "Time step"}
     colNames2 = {str(ii+2): "Local_feature_" + str(ii+1) for ii in range(94)}
-    colNames3 = {str(ii+95): "Aggregate_feature_" + str(ii+1) for ii in range(72)}
+    colNames3 = {str(ii+96): "Aggregate_feature_" + str(ii+1) for ii in range(72)}
 
     colNames = dict(colNames1, **colNames2, **colNames3)
     colNames = {int(jj): item_kk for jj, item_kk in colNames.items()}
