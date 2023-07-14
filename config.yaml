@@ -2,6 +2,7 @@ data_path: /data
 use_cuda: True
 
 hidden_units: 110
+hidden_units_noAgg: 64
 epochs: 13000
 num_classes: 2
 lr: 9e-3

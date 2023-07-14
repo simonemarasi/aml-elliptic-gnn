@@ -40,14 +40,18 @@ if args.use_cuda:
     args.device = 'cuda'
 print ("Using CUDA: ", args.use_cuda, "- args.device: ", args.device)
 
-args.num_features = data.num_features
-
 models_to_train = {
-    'GCN Convolution': models.GCNConvolution(args).to(args.device),
-    'GAT Convolution': models.GATConvolution(args).to(args.device),
-    'SAGE Convolution': models.SAGEConvolution(args).to(args.device),
-    'Chebyshev Convolution': models.ChebyshevConvolution(args, kernel=[1,2]).to(args.device),
-    'GATv2 Convolution': models.GATv2Convolution(args).to(args.device)
+    'GCN Convolution (tx)': models.GCNConvolution(args, data_noAgg.num_features, args.hidden_units_noAgg).to(args.device),
+    'GCN Convolution (tx+agg)': models.GCNConvolution(args, data.num_features, args.hidden_units).to(args.device),
+    'GAT Convolution (tx)': models.GATConvolution(args, data_noAgg.num_features, args.hidden_units_noAgg).to(args.device),
+    'GAT Convolution (tx+agg)': models.GATConvolution(args, data.num_features, args.hidden_units).to(args.device),
+    'SAGE Convolution (tx)': models.SAGEConvolution(args, data_noAgg.num_features, args.hidden_units_noAgg).to(args.device),
+    'SAGE Convolution (tx+agg)': models.SAGEConvolution(args, data.num_features, args.hidden_units).to(args.device),
+    'Chebyshev Convolution (tx)': models.ChebyshevConvolution(args, [1, 2], data_noAgg.num_features, args.hidden_units_noAgg).to(args.device),
+    'Chebyshev Convolution (tx+agg)': models.ChebyshevConvolution(args, [1, 2], data.num_features, args.hidden_units).to(args.device),
+    'GATv2 Convolution (tx)': models.GATv2Convolution(args, data_noAgg.num_features, args.hidden_units_noAgg).to(args.device),
+    'GATv2 Convolution (tx+agg)': models.GATv2Convolution(args, data.num_features, args.hidden_units).to(args.device)
+
     #'Custom GAT': GAT(num_of_layers=3, num_heads_per_layer=[1, 4, 1],
     #                  num_features_per_layer=[args.num_features, args['hidden_units'],
     #                  args['hidden_units']//2, args['num_classes']], device=args.device).to(args.device)
@@ -56,8 +60,12 @@ models_to_train = {
 compare_illicit = pd.DataFrame(columns=['model','Precision','Recall', 'F1', 'F1 Micro AVG'])
 print("Starting training models")
 print("="*50)
-for name, model in models_to_train.items():
 
+model_list = list(models_to_train.items())
+
+for i in range(0, len(model_list), 2):
+
+    (name, model) = model_list[i]
     data_noAgg = data_noAgg.to(args.device)
     print('-'*50)
     print(f"Training model: {name}")
@@ -72,6 +80,7 @@ for name, model in models_to_train.items():
     print('-'*50)
     compare_illicit = compare_illicit.append(u.compute_metrics(model, str(name) + " (tx)", data_noAgg, compare_illicit), ignore_index=True)
 
+    (name, model) = model_list[i + 1]
     data = data.to(args.device)
     print('-'*50)
     print(f"Training model: {name}")
