@@ -2,7 +2,7 @@ data_path: /data
 use_cuda: True
 
 hidden_units: 110
-epochs: 800
+epochs: 13000
 num_classes: 2
-lr: 1e-3
+lr: 9e-3
 weight_decay: 5e-4
