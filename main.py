@@ -24,6 +24,7 @@ print("="*50)
 print("Loading graph data...")
 data_path = args.data_path if data_path is None else data_path
 features, edges = load_data(data_path)
+u.seed_everything(42)
 data = data_to_pyg(features, edges)
 print("Graph data loaded successfully")
 print("="*50)

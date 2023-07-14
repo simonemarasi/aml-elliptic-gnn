@@ -3,7 +3,6 @@ import torch
 import os.path as osp
 from torch_geometric.data import Data
 from torch_geometric.transforms import RandomNodeSplit
-from torch_geometric import seed_everything
 
 def load_data(data_path):
 
@@ -53,7 +52,6 @@ def load_data(data_path):
 
 def data_to_pyg(df_class_feature, df_edges):
 
-    seed_everything(42)
     # Define PyTorch Geometric data structure with Pandas dataframe values
     edge_index = torch.tensor([df_edges["txId1"].values,
                             df_edges["txId2"].values], dtype=torch.long)
