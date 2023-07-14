@@ -51,7 +51,7 @@ def plot_results(df):
 
     x = np.arange(len(labels))
     width = 0.15
-    fig, ax = plt.subplots(figsize=(20, 7))
+    _, ax = plt.subplots(figsize=(20, 7))
     ax.bar(x - width/2, precision, width, label='Precision',color='#83f27b')
     ax.bar(x + width/2, recall, width, label='Recall',color='#f27b83')
     ax.bar(x - (3/2)*width, f1, width, label='F1',color='#f2b37b')
@@ -65,6 +65,35 @@ def plot_results(df):
     ax.legend(loc="lower left")
 
     plt.grid(True)
+    plt.show()
+
+def aggregate_plot(df):
+
+    labels = df['model'].to_numpy()
+
+    precision = df['Precision'].to_numpy()
+    recall = df['Recall'].to_numpy()
+    f1 = df['F1'].to_numpy()
+    maf1 = df['F1 Micro AVG'].to_numpy()
+
+    x = np.arange(len(labels))  # the label locations
+    width = 0.55  # the width of the bars
+    fig, ax = plt.subplots(figsize=(6, 10))
+    ax.bar(x, f1, width, label='F1 Score',color='#f2b37b')
+    ax.bar(x , maf1, width, label='M.A. F1 Score',color='#7b8bf2',bottom=f1)
+    ax.bar(x, precision, width, label='Precision',color='#83f27b',bottom=maf1 + f1)
+    ax.bar(x, recall, width, label='Recall',color='#f27b83',bottom=maf1 + f1 + precision)
+
+    ax.set_ylabel('value 0-1')
+    ax.set_title('Final metrics by classifier')
+    ax.set_xticks(np.arange(0,len(labels),1))
+    ax.set_yticks(np.arange(0,4,0.1))
+    ax.set_xticklabels(labels=labels)
+    ax.legend()
+
+    plt.xticks(rotation=90)
+    plt.grid(True)
+    fig.tight_layout()
     plt.show()
 
 class AttributeDict(dict):

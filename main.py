@@ -101,3 +101,5 @@ print('Results saved to metrics.csv')
 
 u.plot_results(compare_illicit)
 
+u.aggregate_plot(compare_illicit)
+
