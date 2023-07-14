@@ -78,7 +78,7 @@ for i in range(0, len(model_list), 2):
     print('-'*50)
     print(f"Computing metrics for model: {name}")
     print('-'*50)
-    compare_illicit = compare_illicit.append(u.compute_metrics(model, str(name) + " (tx)", data_noAgg, compare_illicit), ignore_index=True)
+    compare_illicit = compare_illicit.append(u.compute_metrics(model, name, data_noAgg, compare_illicit), ignore_index=True)
 
     (name, model) = model_list[i + 1]
     data = data.to(args.device)
@@ -92,7 +92,7 @@ for i in range(0, len(model_list), 2):
     test(model, data)
     print('-'*50)
     print(f"Computing metrics for model: {name}")
-    compare_illicit = compare_illicit.append(u.compute_metrics(model, str(name) + " (tx + agg)", data, compare_illicit), ignore_index=True)
+    compare_illicit = compare_illicit.append(u.compute_metrics(model, name, data, compare_illicit), ignore_index=True)
     print('-'*50)
     
 
